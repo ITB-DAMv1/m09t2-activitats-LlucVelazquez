@@ -5,7 +5,7 @@ namespace T2_Ex2
     internal class Program
     {
         static void Main(string[] args)
-        {
+        {/*
 			//Executa el programa dotnet amb l’argument –info. 
 			var process = new Process
 			{
@@ -31,7 +31,17 @@ namespace T2_Ex2
 			{
 				Console.WriteLine($"PID: {os.Id} \t Name: {os.ProcessName} ");
 			}
-			int pid = int.Parse(Console.ReadLine());
+			int pid = int.Parse(Console.ReadLine());*/
+
+			Thread th = new Thread(Compte);
+			th.Start();
+		}
+		static void Compte()
+		{
+			for (int i = 10; i > 0; i--)
+			{
+				Console.WriteLine(i);
+			}
 		}
 	}
 }
