@@ -8,42 +8,28 @@ namespace T2_Ex2
 		public static int Rounds = 10;
 		public static object Locker = new object();
 		static void Main(string[] args)
-        {/*
-			//Executa el programa dotnet amb l’argument –info. 
-			var process = new Process
+        {
+			Process[] processes = Process.GetProcesses();
+			List<string> processList = new List<string>();
+
+            foreach (Process os in processes)
 			{
-				//Configurem el process amb la classe ProcessStartInfo
-				StartInfo = new ProcessStartInfo
-				{
-					FileName = "dotnet",
-					Arguments = "--info",
-					RedirectStandardOutput = true,
-					UseShellExecute = false,
-					CreateNoWindow = true
-				}
-			};
+                string info = $"PID: {os.Id} \t Name: {os.ProcessName} ";
+                Console.WriteLine(info);
+                processList.Add(info);
+            }
+			string fileName = "processes.txt";
+            File.WriteAllLines(fileName, processList);
 
-			process.Start();
+            /*
+            Thread th1 = new Thread(Ping);
+            Thread th2 = new Thread(Pong);
+            th1.Start();
+            th2.Start();
 
-			//Capturem el que s’ha imprés per pantalla:
-			string output = process.StandardOutput.ReadToEnd();
-			process.WaitForExit();
-			Console.WriteLine(output);
-			var processos = Process.GetProcesses();
-			foreach (Process os in processos)
-			{
-				Console.WriteLine($"PID: {os.Id} \t Name: {os.ProcessName} ");
-			}
-			int pid = int.Parse(Console.ReadLine());*/
-
-			Thread th1 = new Thread(Ping);
-			Thread th2 = new Thread(Pong);
-			th1.Start();
-			th2.Start();
-
-			th1.Join();
-			th2.Join();
-		}
+            th1.Join();
+            th2.Join();*/
+        }
 		static void ReverseCount()
 		{
 			for (int i = 10; i > 0; i--)
